@@ -8,9 +8,9 @@ Este repositorio contiene el código fuente y los modelos UML correspondientes a
 ---
 
 ## 🛠️ Tecnologías y Herramientas
-* **Lenguaje:** []
-* **Entorno de Desarrollo:** [VS Code]
-* **Modelado UML:** []
+* **Lenguaje:** JAVA
+* **Entorno de Desarrollo:** VS Code
+* **Modelado UML:** Draw.io
 
 ---
 
@@ -18,5 +18,5 @@ Este repositorio contiene el código fuente y los modelos UML correspondientes a
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone [https://github.com/i22vajii/MDAS]
-   cd [MDAS]
+   git clone https://github.com/i22vajii/MDAS
+   cd MDAS
