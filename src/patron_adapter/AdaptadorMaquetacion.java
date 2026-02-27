@@ -50,37 +50,30 @@ public class AdaptadorMaquetacion implements IMaquetadorAvanzado {
     public void separarFicheroMultiple(File origen, List<Integer> lineasInicio, List<File> destinos) throws IOException {
         File archivoTemp = origen;
         
-        // Iteramos N-1 veces (para 3 archivos, hacemos 2 divisiones)
-        // Empezamos en 1 porque la primera línea de inicio es para el primer archivo y no genera corte
+        // Para N destinos, hacemos exactamente N-1 cortes
         for (int i = 1; i < lineasInicio.size(); i++) {
             File parteActual = destinos.get(i - 1);
-            File resto = new File("temp_resto_" + i + ".txt");
             
-            // Calculamos el punto de corte para el maquetador básico de forma relativa
-            int corteRelativo;
-            if (i == 1) {
-                corteRelativo = lineasInicio.get(i); 
+            // EL TRUCO ESTRELLA: Si estamos en el último corte, el "resto" no es un temporal, 
+            // es directamente el último archivo definitivo que pide el cliente.
+            File resto;
+            if (i == lineasInicio.size() - 1) {
+                resto = destinos.get(destinos.size() - 1);
             } else {
-                corteRelativo = lineasInicio.get(i) - lineasInicio.get(i-1) + 1;
+                resto = new File("temp_resto_" + i + ".txt");
             }
             
-            // Usamos la función básica de dividir en dos
+            // Calculamos la línea de corte adaptada
+            int corteRelativo = (i == 1) ? lineasInicio.get(i) : (lineasInicio.get(i) - lineasInicio.get(i-1) + 1);
+            
+            // El maquetador básico hace todo el trabajo y escribe en disco (cero RAM desperdiciada)
             maquetadorBasico.dividirFichero(archivoTemp, corteRelativo, parteActual, resto);
             
-            // Borramos el temporal anterior
+            // Limpieza de temporales
             if (i > 1) {
                 archivoTemp.delete();
             }
             archivoTemp = resto; 
-        }
-        
-        // El último remanente va al último archivo de la lista
-        String contenidoRestante = maquetadorBasico.extraerParrafo(archivoTemp, 1, Integer.MAX_VALUE);
-        maquetadorBasico.anadirTexto(destinos.get(destinos.size() - 1), contenidoRestante);
-        
-        // Limpiamos el último archivo temporal sin borrar el original
-        if (lineasInicio.size() > 1) {
-            archivoTemp.delete();
         }
     }
 }
