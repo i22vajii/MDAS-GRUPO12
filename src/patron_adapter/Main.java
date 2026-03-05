@@ -14,30 +14,42 @@ public class Main {
 
         IMaquetadorAvanzado maquetador = new AdaptadorMaquetacion();
         
-        File f1 = new File("fichero1.txt");
-        File f2 = new File("fichero2.txt");
-        File destinoUnido = new File("resultado_unido.txt");
-        File destinoIntercalado = new File("resultado_intercalado.txt");
+        // 1. Definimos la ruta de la carpeta donde estarán los archivos
+        // Asegúrate de que esta ruta coincide con la carpeta que has creado en VS Code
+        String rutaBase = "src/patron_adapter/archivos_texto/"; 
+        
+        // (Opcional pero elegante) Si la carpeta no existe, le decimos a Java que la cree
+        File directorio = new File(rutaBase);
+        if (!directorio.exists()) {
+            directorio.mkdirs();
+        }
+
+        // 2. Añadimos la ruta base a la creación de los archivos
+        File f1 = new File(rutaBase + "fichero1.txt");
+        File f2 = new File(rutaBase + "fichero2.txt");
+        File destinoUnido = new File(rutaBase + "resultado_unido.txt");
+        File destinoIntercalado = new File(rutaBase + "resultado_intercalado.txt");
 
         try {
             System.out.println("-> Ejecutando: Unir Ficheros...");
             maquetador.unirFicheros(f1, f2, destinoUnido);
-            System.out.println("   OK! Revisa el archivo 'resultado_unido.txt'");
+            System.out.println("   OK! Revisa el archivo 'resultado_unido.txt' en la carpeta 'archivos_texto'");
             
             System.out.println("\n-> Ejecutando: Combinar Intercalado...");
             List<int[]> parrafosF1 = Arrays.asList(new int[]{1, 2}, new int[]{4, 5});
             List<int[]> parrafosF2 = Arrays.asList(new int[]{1, 3});
             
             maquetador.combinarIntercalado(f1, f2, parrafosF1, parrafosF2, destinoIntercalado);
-            System.out.println("   OK! Revisa el archivo 'resultado_intercalado.txt'");
+            System.out.println("   OK! Revisa el archivo 'resultado_intercalado.txt' en la carpeta 'archivos_texto'");
 
             System.out.println("\n-> Ejecutando: Separar Fichero Múltiple...");
-            System.out.println("Vamos a dividir el archivo 'fichero1.txt' en 3 partes.");
+            System.out.println("Vamos a dividir el 'fichero1.txt' en 3 partes.");
             
+            // 3. También añadimos la ruta base a los archivos de destino de las partes
             List<File> partes = Arrays.asList(
-                new File("parte1.txt"), 
-                new File("parte2.txt"), 
-                new File("parte3.txt")
+                new File(rutaBase + "parte1.txt"), 
+                new File(rutaBase + "parte2.txt"), 
+                new File(rutaBase + "parte3.txt")
             );
             
             List<Integer> lineasInicio = new java.util.ArrayList<>();
@@ -52,12 +64,12 @@ public class Main {
             }
             
             maquetador.separarFicheroMultiple(f1, lineasInicio, partes);
-            System.out.println("   OK! Revisa los archivos 'parte1.txt', 'parte2.txt' y 'parte3.txt'");
+            System.out.println("   OK! Revisa los archivos 'parte1.txt', 'parte2.txt' y 'parte3.txt' en la carpeta 'archivos_texto'");
             
-            System.out.println("\n¡Todas las operaciones finalizaron con éxito!");
+            System.out.println("\n¡Todas las operaciones finalizaron con éxito y todo está ordenado!");
 
         } catch (IOException e) {
-            System.err.println("ERROR de lectura/escritura: Asegúrate de haber creado 'fichero1.txt' y 'fichero2.txt' en la raíz del proyecto.");
+            System.err.println("ERROR de lectura/escritura: Asegúrate de haber creado 'fichero1.txt' y 'fichero2.txt' dentro de la carpeta 'archivos_texto'.");
             e.printStackTrace();
         } finally {
             scanner.close();
