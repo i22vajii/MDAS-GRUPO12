@@ -51,7 +51,7 @@ public class Main {
                 lineasInicio.add(scanner.nextInt());
             }
             
-            maquetador.separarFicheroMultiple(destinoUnido, lineasInicio, partes);
+            maquetador.separarFicheroMultiple(f1, lineasInicio, partes);
             System.out.println("   OK! Revisa los archivos 'parte1.txt', 'parte2.txt' y 'parte3.txt'");
             
             System.out.println("\n¡Todas las operaciones finalizaron con éxito!");

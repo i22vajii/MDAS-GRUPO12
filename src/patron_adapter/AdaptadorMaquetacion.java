@@ -16,6 +16,7 @@ public class AdaptadorMaquetacion implements IMaquetadorAvanzado {
 
     @Override
     public void unirFicheros(File f1, File f2, File destino) throws IOException {
+        limpiarFicheroDestino(destino);
         // Extraemos todo el contenido de f1 y f2 indicando un número de línea fin muy alto
         String contenidoF1 = maquetadorBasico.extraerParrafo(f1, 1, Integer.MAX_VALUE);
         String contenidoF2 = maquetadorBasico.extraerParrafo(f2, 1, Integer.MAX_VALUE);
@@ -27,6 +28,7 @@ public class AdaptadorMaquetacion implements IMaquetadorAvanzado {
 
     @Override
     public void combinarIntercalado(File f1, File f2, List<int[]> parrafosF1, List<int[]> parrafosF2, File destino) throws IOException {
+        limpiarFicheroDestino(destino);
         // Buscamos cuál de las dos listas de párrafos es más larga para iterar hasta el final
         int maxLength = Math.max(parrafosF1.size(), parrafosF2.size());
         
@@ -48,32 +50,34 @@ public class AdaptadorMaquetacion implements IMaquetadorAvanzado {
 
     @Override
     public void separarFicheroMultiple(File origen, List<Integer> lineasInicio, List<File> destinos) throws IOException {
-        File archivoTemp = origen;
         
-        // Para N destinos, hacemos exactamente N-1 cortes
-        for (int i = 1; i < lineasInicio.size(); i++) {
-            File parteActual = destinos.get(i - 1);
+        for (int i = 0; i < lineasInicio.size(); i++) {
+            File destinoActual = destinos.get(i);
             
-            // EL TRUCO ESTRELLA: Si estamos en el último corte, el "resto" no es un temporal, 
-            // es directamente el último archivo definitivo que pide el cliente.
-            File resto;
-            if (i == lineasInicio.size() - 1) {
-                resto = destinos.get(destinos.size() - 1);
+            // Reutilizamos el método que creamos antes para que no se acumule texto si ejecutamos varias veces
+            limpiarFicheroDestino(destinoActual); 
+            
+            int inicio = lineasInicio.get(i);
+            int fin;
+            
+            // Si no es el último archivo, el fin es justo la línea anterior al siguiente corte
+            if (i < lineasInicio.size() - 1) {
+                fin = lineasInicio.get(i + 1) - 1; 
             } else {
-                resto = new File("temp_resto_" + i + ".txt");
+                // Si es el último archivo, leemos hasta el infinito (el final del archivo)
+                fin = Integer.MAX_VALUE; 
             }
             
-            // Calculamos la línea de corte adaptada
-            int corteRelativo = (i == 1) ? lineasInicio.get(i) : (lineasInicio.get(i) - lineasInicio.get(i-1) + 1);
+            // Extraemos exactamente el "párrafo" (bloque de líneas) que nos interesa
+            String contenido = maquetadorBasico.extraerParrafo(origen, inicio, fin);
             
-            // El maquetador básico hace todo el trabajo y escribe en disco (cero RAM desperdiciada)
-            maquetadorBasico.dividirFichero(archivoTemp, corteRelativo, parteActual, resto);
-            
-            // Limpieza de temporales
-            if (i > 1) {
-                archivoTemp.delete();
-            }
-            archivoTemp = resto; 
+            // Y lo inyectamos en su archivo correspondiente
+            maquetadorBasico.anadirTexto(destinoActual, contenido);
+        }
+    }
+    private void limpiarFicheroDestino(File archivo) {
+        if (archivo.exists()) {
+            archivo.delete();
         }
     }
 }
