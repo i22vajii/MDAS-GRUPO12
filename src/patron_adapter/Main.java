@@ -32,7 +32,7 @@ public class Main {
             System.out.println("   OK! Revisa el archivo 'resultado_intercalado.txt'");
 
             System.out.println("\n-> Ejecutando: Separar Fichero Múltiple...");
-            System.out.println("Vamos a dividir el archivo 'resultado_unido.txt' en 3 partes.");
+            System.out.println("Vamos a dividir el archivo 'fichero1.txt' en 3 partes.");
             
             List<File> partes = Arrays.asList(
                 new File("parte1.txt"), 
