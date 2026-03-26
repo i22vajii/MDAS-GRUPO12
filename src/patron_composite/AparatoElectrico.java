@@ -5,7 +5,7 @@ public class AparatoElectrico extends ContadorLogico {
     private double consumoPorHora;
     private double horasUsoEstimado;
     
-    // Podemos añadir un precio ficticio por kWh o por consumo para calcular el coste total
+    
     private static final double PRECIO_ENERGIA = 0.15; 
 
     public AparatoElectrico(double consumoPorHora, double horasUsoEstimado) {
@@ -13,7 +13,7 @@ public class AparatoElectrico extends ContadorLogico {
         this.horasUsoEstimado = horasUsoEstimado;
     }
 
-    // Métodos específicos del aparato (según tu diagrama UML)
+    // Métodos específicos del aparato 
     public double calcularHorasUso() {
         return this.horasUsoEstimado;
     }
@@ -22,7 +22,7 @@ public class AparatoElectrico extends ContadorLogico {
         return this.consumoPorHora * PRECIO_ENERGIA;
     }
 
-    // Implementación de los métodos obligatorios de la clase padre (ContadorLogico)
+    
     @Override
     public double estimarConsumoGlobal() {
         // Consumo = horas * consumo/hora

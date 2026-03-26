@@ -6,7 +6,7 @@ import java.util.List;
 
 public class AdaptadorMaquetacion implements IMaquetadorAvanzado {
     
-    // Aquí aplicamos la composición (la flecha 'delega' de nuestro diagrama)
+    
     private MaquetadorBasico maquetadorBasico;
 
     public AdaptadorMaquetacion() {
@@ -64,7 +64,7 @@ public class AdaptadorMaquetacion implements IMaquetadorAvanzado {
             if (i < lineasInicio.size() - 1) {
                 fin = lineasInicio.get(i + 1) - 1; 
             } else {
-                // Si es el último archivo, leemos hasta el infinito (el final del archivo)
+                // Si es el último archivo, leemos hasta el final del fichero
                 fin = Integer.MAX_VALUE; 
             }
             

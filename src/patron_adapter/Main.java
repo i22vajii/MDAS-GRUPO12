@@ -15,10 +15,9 @@ public class Main {
         IMaquetadorAvanzado maquetador = new AdaptadorMaquetacion();
         
         // 1. Definimos la ruta de la carpeta donde estarán los archivos
-        // Asegúrate de que esta ruta coincide con la carpeta que has creado en VS Code
         String rutaBase = "src/patron_adapter/archivos_texto/"; 
         
-        // (Opcional pero elegante) Si la carpeta no existe, le decimos a Java que la cree
+        
         File directorio = new File(rutaBase);
         if (!directorio.exists()) {
             directorio.mkdirs();

@@ -10,7 +10,7 @@ public class MaquetadorBasico {
     
     // 1) Añadir texto, recibido como String, al final de un archivo
     public void anadirTexto(File archivo, String texto) throws IOException {
-        // El parámetro 'true' en FileWriter indica que se añade al final (append)
+        // El parámetro 'true' en FileWriter indica que se añade al final
         try (FileWriter fw = new FileWriter(archivo, true)) {
             fw.write(texto + "\n");
         }
