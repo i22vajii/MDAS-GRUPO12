@@ -9,7 +9,7 @@ public class SistemaTransporte {
 
     public SistemaTransporte() {
         this.listaRutas = new ArrayList<>();
-        // Simulamos un pequeño catálogo inicial
+      
         this.listaRutas.add("Tren: Madrid - Cordoba");
         this.listaRutas.add("Vuelo: Barcelona - Cordoba");
         this.listaRutas.add("Autobus: Sevilla - Madrid");
@@ -19,7 +19,7 @@ public class SistemaTransporte {
         System.out.println("[Transporte] Buscando opciones de " + origen + " a " + destino + " para " + numPersonas + " personas...");
         
         List<String> resultados = new ArrayList<>();
-        // Devolvemos un resultado simulado basado en los parámetros para ver que funciona:
+       
         resultados.add("Billete disponible: " + origen + " -> " + destino + " (Apto para grupo de " + numPersonas + ")");
         
         return resultados;

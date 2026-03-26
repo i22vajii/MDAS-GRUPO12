@@ -9,7 +9,7 @@ public class SistemaAlojamiento {
 
     public SistemaAlojamiento() {
         this.catalogoHoteles = new ArrayList<>();
-        // Simulamos un pequeño catálogo inicial
+        
         this.catalogoHoteles.add("Hotel Centro 4* - Cordoba");
         this.catalogoHoteles.add("Hostal Plaza - Madrid");
     }
@@ -18,7 +18,7 @@ public class SistemaAlojamiento {
         System.out.println("[Alojamiento] Buscando hoteles en " + ciudad + " para " + numPersonas + " personas...");
         
         List<String> resultados = new ArrayList<>();
-        // Lógica de filtrado simulada
+       
         resultados.add("Hotel encontrado en " + ciudad + " con capacidad para " + numPersonas + " personas");
         
         return resultados;

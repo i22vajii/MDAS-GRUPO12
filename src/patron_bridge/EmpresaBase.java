@@ -21,7 +21,7 @@ public abstract class EmpresaBase implements IProveedor {
     public List<Producto> buscar(String criterio) {
         List<Producto> resultado = new ArrayList<>();
         for (Producto p : productos) {
-            // Busca si el criterio coincide con el nombre, material o color
+            // Busca si coincide con el nombre, material o color
             if (p.getNombre().toLowerCase().contains(criterio.toLowerCase()) || 
                 p.getMaterial().toLowerCase().contains(criterio.toLowerCase()) ||
                 p.getColor().toLowerCase().contains(criterio.toLowerCase())) {

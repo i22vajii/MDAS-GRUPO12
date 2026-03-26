@@ -12,7 +12,7 @@ public class Main {
         System.out.println("   BIENVENIDO A LA AGENCIA DE VIAJES GRUPALES");
         System.out.println("==================================================");
 
-        // Simulamos las fechas por simplicidad
+        
         Date fechaIda = new Date(); 
         Date fechaVuelta = new Date(); 
 
@@ -24,10 +24,10 @@ public class Main {
 
         System.out.print("Introduce el número de personas para el grupo: ");
         int numPersonas = scanner.nextInt();
-        scanner.nextLine(); // Limpiar el buffer del scanner
+        scanner.nextLine(); 
 
         String tipoActividad = "";
-        // Solo pedimos el tipo de actividad si van a Córdoba, ya que sabemos que Madrid no lo usa
+        
         if (destino.equalsIgnoreCase("Cordoba") || destino.equalsIgnoreCase("Córdoba")) {
             System.out.print("Introduce el tipo de actividad cultural que buscáis (ej. Cultural, Gastronómica, Histórica): ");
             tipoActividad = scanner.nextLine();

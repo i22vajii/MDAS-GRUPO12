@@ -10,7 +10,7 @@ public class OficinaTurismoCordoba {
         System.out.println("[Turismo Córdoba] Buscando eventos de tipo '" + tipo + "' para la fecha " + fechaInicio + "...");
         
         List<String> actividades = new ArrayList<>();
-        // Simulamos la búsqueda
+      
         if (tipo != null && !tipo.isEmpty()) {
             actividades.add("Visita guiada Mezquita-Catedral (Tipo: " + tipo + ")");
             actividades.add("Ruta de los Patios Cordobeses (Tipo: " + tipo + ")");

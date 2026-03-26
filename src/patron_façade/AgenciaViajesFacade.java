@@ -6,7 +6,7 @@ import java.util.List;
 
 public class AgenciaViajesFacade {
 
-    // Al ser una clase Utility, ponemos el constructor privado para evitar que se instancie.
+    
     private AgenciaViajesFacade() {
     }
 

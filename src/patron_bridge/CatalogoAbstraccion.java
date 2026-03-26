@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class CatalogoAbstraccion {
-    // El "puente" hacia las implementaciones (proveedores)
+    
     protected List<IProveedor> implementaciones = new ArrayList<>();
 
     public void addProveedor(IProveedor p) {

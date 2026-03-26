@@ -11,9 +11,9 @@ public class Main {
         EmpresaC empresaC = new EmpresaC(); // Vende de todo (mesas y sofás) 
 
         // 2. Crear los productos
-        // Vamos a crear un sofá que venden tanto la Empresa A como la Empresa C para probar que el stock se suma
+        
         Sofa sofaRelaxA = new Sofa("Sofá modelo Relax", 500.0, 10, "Gris", "Tela", 3);
-        Sofa sofaRelaxC = new Sofa("Sofá modelo Relax", 550.0, 5, "Gris", "Tela", 3); // Mismo nombre, distinto precio/stock
+        Sofa sofaRelaxC = new Sofa("Sofá modelo Relax", 550.0, 5, "Gris", "Tela", 3); 
         
         Sofa sofaChester = new Sofa("Sofá Chester", 800.0, 2, "Marrón", "Cuero", 2);
         
@@ -29,18 +29,18 @@ public class Main {
         empresaC.addProducto(sofaRelaxC);
         empresaC.addProducto(mesaCristal);
 
-        // 4. Configurar los catálogos (El Patrón Bridge en acción)
+        // 4. Configurar los catálogos 
         CatalogoSofas catalogoSofas = new CatalogoSofas();
         catalogoSofas.addProveedor(empresaA);
-        catalogoSofas.addProveedor(empresaC); // Unimos los stocks de A y C para sofás
+        catalogoSofas.addProveedor(empresaC); 
 
         CatalogoMesas catalogoMesas = new CatalogoMesas();
         catalogoMesas.addProveedor(empresaB);
-        catalogoMesas.addProveedor(empresaC); // Unimos los stocks de B y C para mesas
+        catalogoMesas.addProveedor(empresaC); 
 
-        // 5. ¡Pruebas de funcionamiento!
+        
         System.out.println("=== PRUEBA 1: STOCK DE SOFÁS ORDENADO POR UNIDADES (Agregando A y C) ===");
-        // Debería sumar los 10 de A y los 5 de C para el "Sofá modelo Relax" -> Total 15
+        
         List<Producto> sofasAgregados = catalogoSofas.obtenerStockOrdenadoUnidades();
         for (Producto p : sofasAgregados) {
             System.out.println(p.toString());
